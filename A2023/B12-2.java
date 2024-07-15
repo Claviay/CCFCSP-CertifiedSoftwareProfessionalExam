@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SimplifyNumber {
+public class Main {
 
     // 存储素数的列表
     private static List<Long> primes = new ArrayList<>();
@@ -61,9 +61,10 @@ public class SimplifyNumber {
 
         int q = scanner.nextInt();
 
+        // 一共有q个数
         while (q-- > 0) {
-            long n = scanner.nextLong();
-            long k = scanner.nextLong();
+            long n = scanner.nextLong();  // 操作的数
+            long k = scanner.nextLong();  // 阈值
             System.out.println(simplifyNumber(n, k));
         }
 
