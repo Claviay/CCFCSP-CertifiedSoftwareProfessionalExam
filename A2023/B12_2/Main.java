@@ -1,9 +1,14 @@
+package B12_2;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+ 因子化简
+ */
 public class Main {
 
     // 存储素数的列表
