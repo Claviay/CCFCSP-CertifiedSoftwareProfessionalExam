@@ -8,6 +8,9 @@ import java.util.Map;
 
 /*
  因子化简
+
+ 生成素数
+ 从小开始除以素数
  */
 public class Main {
 

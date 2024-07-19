@@ -5,6 +5,7 @@ import java.util.*;
 /*
 仓库规划
 注意：当满足上级仓库条件的群中，选取序号最小的那个作为目标的上级仓库（序号即为输入的仓库的顺序）
+核心：三层遍历，复杂度 O（n^2)
  */
 public class Main {
     public static void main(String[] args) {
@@ -26,17 +27,14 @@ public class Main {
         }
 
 
-
-
-
-
-
         // 开始比较筛选出上级仓库
+
+//flag_1 被用于检测仓库 j 是否在所有维度上都大于仓库 i。如果 flag_1 在内部循环结束后仍然为 1，则说明仓库 j 可以作为仓库 i 的上级。
+//flag_2 则用于检测对于仓库 i 是否已经找到并记录了任何上级仓库。如果在整个外部循环结束后 flag_2 仍为 1，则说明没有找到任何上级仓库，并且应该将结果列表中的相应位置设置为 0。
         int flag_1 = 1;
+        int flag_2 = 1;
         for (int i = 0; i < n; i++) {
 
-            //(候选上级仓库,数据序号)
-            List<Integer> list_candidate = new ArrayList<>(); // 每次比较时重新初始化候选上级仓库
 
             // 1.获得 i 仓库的候选上级仓库
             for (int j = 0; j < n; j++) {
@@ -57,27 +55,21 @@ public class Main {
                     // 如果j仓库的维度都大于i仓库
                     if (flag_1 == 1) {
                         // 存放序号
-                        list_candidate.add(j + 1);
+                        list_result.add(j + 1);
+                        flag_2 = 0;
+                        break;
                     }
                 }
 
                 flag_1 = 1;
             }
 
-            // 2.得到 i 仓库的候选上级仓库后，进一步筛选出最佳上级仓库
-            int min_candidate = Integer.MAX_VALUE;
-            if (list_candidate.isEmpty()) {
-                list_result.add(0); // 如果没上级，默认为中心仓库设置为0
-            } else {
-                for (int candidate : list_candidate) {
-                    if (candidate < min_candidate) {
-                        min_candidate = candidate;
-                    }
-                }
 
-                // 3. 把i仓库对应的上级仓库的编号记录到list_result中
-                list_result.add(min_candidate);
+            // 如果对于i 比较了所有发现没有上级仓库（其中flag_2 = 1 也就是说没有被改变）
+            if (flag_2 == 1) {
+                list_result.add(0);
             }
+            flag_2 = 1; // 复位
         }
 
         // 输出答案
