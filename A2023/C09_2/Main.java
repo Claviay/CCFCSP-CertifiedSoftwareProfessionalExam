@@ -39,9 +39,20 @@ public class Main {
             double x = scan.nextDouble(); // 初始x坐标
             double y = scan.nextDouble(); // 初始y坐标
 
+
+
+
+
+
+
             // 计算从l到r的累积旋转角度和累积缩放倍数
             double sum_sita = angle[r] - angle[l - 1]; // 区间[l, r]的旋转角度
             double sum_k = k[r] / k[l - 1]; // 区间[l, r]的缩放倍数
+
+
+
+
+
 
             // 根据公式计算最终的坐标
             double nx = x * Math.cos(sum_sita) - y * Math.sin(sum_sita); // x坐标
