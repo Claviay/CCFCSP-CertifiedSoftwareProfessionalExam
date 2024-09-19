@@ -15,9 +15,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int x = sc.nextInt();
-        int y = sc.nextInt();
+        int n = sc.nextInt(); // 框选个数
+        int x = sc.nextInt(); // 目标的x长度
+        int y = sc.nextInt(); // 目标的y长度
 
         boolean[][] land = new boolean[10003][10003];
 
@@ -28,9 +28,13 @@ public class Main {
             temp_y_1 = sc.nextInt();
             temp_x_2 = sc.nextInt();
             temp_y_2 = sc.nextInt();
+
+            // 绝对不涉及目标区域，直接跳过
             if (temp_x_2 <= -1 || temp_x_1 >= x || temp_y_2 <= -1 || temp_y_1 >= y) {
                 continue;
             }
+
+
 
             temp_x_1 = Math.max(temp_x_1, 0);
             temp_y_1 = Math.max(temp_y_1, 0);

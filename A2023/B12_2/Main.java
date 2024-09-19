@@ -38,7 +38,7 @@ public class Main {
     // 主函数，简化数字
     public static long simplifyNumber(long n, long k) {
         long result = 1;
-        Map<Long, Long> factorCount = new HashMap<>();
+        HashMap<Long, Long> factorCount = new HashMap<>();
 
         // 素因数分解
         for (Long prime : primes) {
@@ -58,9 +58,10 @@ public class Main {
             }
         }
 
-        // result 如果等于1就意味着没有满足条件的素数因子
-        return result == 1 && n > 1 ? n : result; // 如果没有任何素因子大于阈值且 n 不是 1，则返回 n
+        return result;
     }
+
+
 
     public static void main(String[] args) {
         generatePrimes(1000); // 生成1000以内的所有素数
@@ -79,3 +80,68 @@ public class Main {
         scanner.close();
     }
 }
+
+
+/*
+2024.09.05
+import java.util.*;
+
+public class Main {
+    public static List<Long> primes = new ArrayList<>(1000000);
+    public static boolean isPrime(int n) {
+        if (n < 2) {
+            return false;
+        }
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        for (int i = 2; i < 1000; i++) {
+            if (isPrime(i)) {
+                primes.add((long)i);
+            }
+        }
+
+
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+
+        for (int i = 1; i <= num; i++) {
+            long item = sc.nextLong();
+            long k = sc.nextInt();
+            long ans = 1L;
+            int primesIndex = 0;
+
+            while (item != 1L && primesIndex < primes.size()) {
+                if (item % primes.get(primesIndex) == 0) {
+                    int tempCount = 0;
+                    long tempAns = 1L;
+                    while (item % primes.get(primesIndex) == 0) {
+                        item /= primes.get(primesIndex);
+                        tempAns *= primes.get(primesIndex);
+                        tempCount++;
+                    }
+
+                    if (tempCount >= k) {
+                        ans *= tempAns;
+                    }
+                }
+                primesIndex++;
+            }
+
+            if (item > 1 && k == 1) {
+                ans *= item;
+            }
+
+            System.out.println(ans);
+        }
+    }
+
+}
+
+ */
