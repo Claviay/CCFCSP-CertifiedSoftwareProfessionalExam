@@ -1,6 +1,13 @@
 import java.io.*;
 import java.util.*;
-
+/*
+每次循环里新增一个东西，在这个循环大家庭里所有的都更新一遍。
+比如目前，循环abc与de，那么已经有的是a映射“abc",b也是“abc", c也是abc，d映射de
+--------现在多了c到d，开始对比c和d的原本映射区别。c的映射是abc    
+d的映射则是de——现在发现c和d的映射不完全相同，那么此时执行的是 ——把这两个映射加起来组成新的映射。
+然后遍历这个新的映射值，更新映射abcde五个元素的每个元素的映射都变成abcde。
+也就是a是abcde映射，b的映射也是abcde.....
+*/
 public class Main {
     public static ArrayList<String> a = new ArrayList<>();
     public static HashMap<Character, String> charMap = new HashMap<>();
